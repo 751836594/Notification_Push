@@ -24,7 +24,7 @@ services:
     networks:
       - notification
 
-  supervisor:
+  swoole:
     container_name:  notification_swoole
     build: ./docker/swoole
     privileged: true
