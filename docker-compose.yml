@@ -1,0 +1,41 @@
+version: '2'
+services:
+  php:
+    container_name:  notification_php
+    build: ./docker/php-fpm
+    volumes:
+      - ./src:/var/www/html
+    restart: always
+    privileged: true
+    ports:
+      - "9000:9000"
+    networks:
+      - notification
+
+  nginx:
+    container_name:  notification_nginx
+    build: ./docker/nginx
+    privileged: true
+    volumes:
+      - ./src:/var/www/html
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      - notification
+
+  supervisor:
+    container_name:  notification_supervisor
+    build: ./docker/supervisor
+    privileged: true
+    volumes:
+      - ./src:/var/www/html
+    restart: always
+    ports:
+      - "9555:9555"
+    networks:
+      - notification
+
+networks:
+  notification:
+    driver: bridge
