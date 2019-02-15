@@ -10,7 +10,7 @@
 namespace Util\Common;
 
 use Util\Tools\ArrayHelper;
-
+use Phalcon\Config\Adapter\Ini as EnvConfig;
 class Config
 {
 
@@ -85,14 +85,11 @@ class Config
      */
     public static function get($name)
     {
-        static $config;
-        if (empty($config)) {
-            $commonConfig = self::loadCommon();
-            $loadConfig = self::loadPrivate();
-            $config = ArrayHelper::arrayMerge($commonConfig, $loadConfig);
-        }
-
-        return isset($config[$name]) ? $config[$name] : '';
+        $config = new EnvConfig(BASE_PATH.'/.env');
+        $environment = $config->development->environment;
+        $baseConfig = include APP_PATH . "/config/config".(empty($environment) ? '' : '_'.$environment).".php";
+        $params = ($config->merge($baseConfig))->toArray();
+        return  isset($params[$name]) ? $params[$name] : '';
     }
 
     public static function loadConfig()

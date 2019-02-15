@@ -268,7 +268,11 @@ RUN set -ex \
 		echo 'listen = 9000'; \
 	} | tee php-fpm.d/zz-docker.conf \
 	&& cd / && unzip cphalcon-v3.4.2.zip && cd cphalcon/build &&  sh install && docker-php-ext-enable phalcon \
-    && rm -rf cphalcon cphalcon-v3.4.2.zip
+    && rm -rf cphalcon cphalcon-v3.4.2.zip \
+    && pecl install redis-3.1.5.tgz  &&   rm -rf redis-3.1.5.tgz \
+    && pecl install swoole \
+    && docker-php-ext-install  pdo_mysql pdo_pgsql pcntl bcmath \
+    && docker-php-ext-enable redis
 
 EXPOSE 9000
 CMD ["php-fpm"]

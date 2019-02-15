@@ -1,5 +1,6 @@
 FROM notification_push_php
-
+COPY server.key /
+COPY server.pem /
 #安装swoole
 COPY swoole-src-4.2.13.tar.gz /
 RUN cd / && tar -zxvf swoole-src-4.2.13.tar.gz \

@@ -25,4 +25,31 @@ return new \Phalcon\Config([
         'dbname'      => '',
         'charset'     => 'utf8',
     ],
+    'factory_redis' => [
+        'host' => '172.19.20.63',
+        'prefix' => '',
+        'port' => '6379',
+        'auth' => 'DMS@NaT3',
+        'index' => '10',
+        'persistent' => false,
+    ],
+    'socket' => [
+        'web_socket' => [
+            'config' => [
+                'task_worker_num' => 4,
+                'buffer_output_size' => 2 * 1024 * 1024,//发送输出缓存区内存尺寸
+                'heartbeat_check_interval' => 60,// 心跳检测秒数
+                'ssl_cert_file'=> '/server.pem',
+                'ssl_key_file' => '/server.key',
+            ],
+            'params' => [
+                'connect' => [
+                    'ip' => '0.0.0.0',
+                    'host' => 'https://www.test.com',
+                    'port' => 9555
+                ]
+            ],
+            'socketKey' => '4e5abdad9584b8681145sdf123c2130'
+        ],
+    ],
 ]);
