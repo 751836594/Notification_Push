@@ -48,6 +48,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
 		ca-certificates \
 		linux-headers \
 		git \
+		vim \
 		curl \
 		tar \
 		xz \

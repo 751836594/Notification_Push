@@ -10,12 +10,7 @@ $loader->registerDirs(
         $config->application->controllersDir,
         $config->application->modelsDir,
         $config->application->libraryDir,
-        $config->application->serviceDir,
     ]
 );
-
-$loader->registerNamespaces([
-    'Service' => $config->application->serviceDir,
-]);
 
 $loader->register();
