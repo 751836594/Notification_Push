@@ -2,4 +2,3 @@
 .idea
 .env
 cache
-app/config/config.php
